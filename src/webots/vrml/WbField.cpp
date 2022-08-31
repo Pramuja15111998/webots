@@ -39,6 +39,7 @@
 #include <cassert>
 #include <iostream>
 
+#include <QtCore/QDebug>
 // creates with the default value
 WbField::WbField(const WbFieldModel *model, WbNode *parentNode) :
   mModel(model),
@@ -360,6 +361,7 @@ void WbField::removeInternalField(QObject *field) {
 
 // propagate change in proto parameter to a node field
 void WbField::parameterChanged() {
+  qDebug() << "PARAM CHANGED";
   WbSFNode *sfnode = dynamic_cast<WbSFNode *>(mValue);
   if (sfnode && sfnode->value()) {
     WbNode *node = sfnode->value();

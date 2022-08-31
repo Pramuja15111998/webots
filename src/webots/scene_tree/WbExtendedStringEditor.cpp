@@ -431,6 +431,7 @@ void WbExtendedStringEditor::updateWidgets() {
   const bool protoParameter = field()->isParameter();
   const bool regular = mStringType == REGULAR;
   const bool sound = mStringType == SOUND;
+  qDebug() << mStringType;
   const bool texture = mStringType == TEXTURE_URL || mStringType == HDR_TEXTURE_URL;
   const bool solidReference = mStringType == SOLID_REFERENCE;
   const bool fluidName = mStringType == FLUID_NAME;

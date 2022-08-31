@@ -180,6 +180,7 @@ void WbTemplateManager::regenerateNodeFromFieldChange(WbField *field) {
 void WbTemplateManager::regenerateNodeFromParameterChange(WbField *field) {
   // retrieve the right node
   WbNode *templateNode = dynamic_cast<WbNode *>(sender());
+  qDebug() << "regenerateNodeFromParameterChange" << templateNode;
   assert(templateNode);
   if (templateNode)
     regenerateNodeFromField(templateNode, field, true);
@@ -206,6 +207,7 @@ void WbTemplateManager::regenerateNodeFromField(WbNode *templateNode, WbField *f
 }
 
 void WbTemplateManager::regenerateNode(WbNode *node, bool restarted) {
+  qDebug() << "REGEN" << node->modelName();
   assert(node);
 
   if (mBlockRegeneration) {

@@ -575,10 +575,14 @@ int WbAddNodeDialog::addProtosFromProtoList(QTreeWidgetItem *parentItem, int typ
   while (it.hasNext()) {
     WbProtoInfo *info = it.next().value();
 
+    if (info->url().contains("LincolnMKZ.proto"))
+      qDebug() << "HERE";
+
     // don't display PROTOs which contain a "hidden" or a "deprecated" tag
     const QStringList tags = info->tags();
-    if (tags.contains("deprecated", Qt::CaseInsensitive) || tags.contains("hidden", Qt::CaseInsensitive))
+    if (tags.contains("deprecated", Qt::CaseInsensitive) || tags.contains("hidden", Qt::CaseInsensitive)) {
       continue;
+    }
 
     // don't display PROTO nodes which have been filtered-out by the user's "filter" widget.
     const QString baseType = info->baseType();

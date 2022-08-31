@@ -765,12 +765,13 @@ void WbNode::resetUseAncestorFlag() {
 
 // called after any field of this node has changed
 void WbNode::notifyFieldChanged() {
+  qDebug() << "NOTIFYFIELDCH";
   // this is the changed field
   WbField *const field = static_cast<WbField *>(sender());
 
   WbField *const parentField = this->parentField();
-  if (parentField && parentField->parameter() && isProtoParameterNode())
-    emit parentField->parentNode()->parameterChanged(parentField);
+  if (parentField)
+    ;  // emit parentField->parentNode()->parameterChanged(parentField);
 
   if (mIsBeingDeleted || cUpdatingDictionary) {
     emit fieldChanged(field);
@@ -817,6 +818,7 @@ void WbNode::notifyFieldChanged() {
 }
 
 void WbNode::notifyParameterChanged() {
+  qDebug() << "NOTIFY PARAM CHANGED";
   WbField *const parameter = static_cast<WbField *>(sender());
 
   emit parameterChanged(parameter);
