@@ -65,6 +65,7 @@ WbField::WbField(const WbField &other, WbNode *parentNode) :
   mIsTemplateRegenerator(other.mIsTemplateRegenerator),
   mParentNode(parentNode),
   mScope(other.mScope) {
+  qDebug() << "CREATE" << this << "FROM" << &other;
   mModel->ref();
   if (hasRestrictedValues())
     connect(mValue, &WbValue::changed, this, &WbField::checkValueIsAccepted, Qt::UniqueConnection);
@@ -309,7 +310,8 @@ bool WbField::isHiddenParameter() const {
 
 // redirect this node field to a proto parameter
 void WbField::redirectTo(WbField *parameter) {
-  // qDebug() << "redirectTo: " << this << " " << name() << " -> " << parameter << " " << parameter->name();
+  if (name() == "protoUrl" || name() == "url")
+    qDebug() << "redirectTo: " << this << " " << name() << " -> " << parameter << " " << parameter->name();
 
   if (this == parameter || parameter->mInternalFields.contains(this)) {
     // skip self and duplicated redirection
@@ -361,7 +363,7 @@ void WbField::removeInternalField(QObject *field) {
 
 // propagate change in proto parameter to a node field
 void WbField::parameterChanged() {
-  qDebug() << "PARAM CHANGED";
+  qDebug() << "PARAM CHANGED" << this << name();
   WbSFNode *sfnode = dynamic_cast<WbSFNode *>(mValue);
   if (sfnode && sfnode->value()) {
     WbNode *node = sfnode->value();

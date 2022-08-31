@@ -6,7 +6,6 @@
 # template language: javascript
 
 EXTERNPROTO "webots://projects/vehicles/protos/abstract/Car.proto"
-EXTERNPROTO "LincolnMKZPlatesMesh.proto"
 
 PROTO LincolnMKZ [
   field     SFVec3f    translation       0 0 0.4
@@ -32,8 +31,7 @@ PROTO LincolnMKZ [
                 url IS plateUrl
               }
             }
-            geometry LincolnMKZPlatesMesh {
-            }
+            geometry Box {}
           }
 
         ]

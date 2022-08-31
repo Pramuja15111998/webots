@@ -4,20 +4,14 @@
 # documentation url: https://www.cyberbotics.com/doc/automobile/car#simple-vehicles
 # Simple kinematic model of truck to be moved with a Supervisor.
 
-EXTERNPROTO "TruckTrailerSimple.proto"
-EXTERNPROTO "TruckFrontLight.proto"
-EXTERNPROTO "TruckCab.proto"
-EXTERNPROTO "TruckWheel.proto"
-
 PROTO TruckSimple [
   field     SFVec3f    translation         0 0.5 0
   field     MFNode     sensorsSlotCenter   [ ]
 
 ]
 {
-  Robot {
+  Transform {
     translation IS translation
-
     children [
       Transform {
         children IS sensorsSlotCenter
